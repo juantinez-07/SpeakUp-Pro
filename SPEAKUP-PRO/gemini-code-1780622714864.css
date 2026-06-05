@@ -1,0 +1,1176 @@
+/* ============================================================
+   SpeakUp Pro - Hoja de Estilos Principal (style.css)
+   Sistema de Estudio Neurocientífico de Idiomas
+   ============================================================ */
+
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #ec4899;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --gold: #fbbf24;
+    --dark: #1e293b;
+    --gray: #64748b;
+    --gradient: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+    --gradient-gold: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+}
+
+/* ===== RESET Y BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background: #f1f5f9;
+    color: var(--dark);
+    line-height: 1.6;
+    transition: background 0.5s;
+}
+
+/* Modo Enfoque (oscuro) */
+body.focus-mode {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+body.focus-mode .section-subtitle,
+body.focus-mode .level-card p {
+    color: #94a3b8;
+}
+body.focus-mode .progress-container,
+body.focus-mode .level-card,
+body.focus-mode .srs-card,
+body.focus-mode .neuro-card {
+    background: #1e293b;
+    color: #e2e8f0;
+}
+body.focus-mode .srs-stats {
+    background: #0f172a;
+}
+
+/* ============================================================
+   PANTALLA DE LOGIN
+   ============================================================ */
+.login-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5000;
+    padding: 1rem;
+}
+.login-screen.hidden {
+    display: none;
+}
+.login-box {
+    background: white;
+    border-radius: 25px;
+    padding: 2.5rem;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.6s;
+}
+.login-box .logo-big {
+    font-size: 3.5rem;
+}
+.login-box h1 {
+    font-size: 1.7rem;
+    color: var(--primary-dark);
+}
+.login-box p {
+    color: var(--gray);
+    margin-bottom: 1.3rem;
+}
+.login-input,
+.cefr-select {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+}
+.login-input:focus {
+    border-color: var(--primary);
+}
+.avatar-picker {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.3rem;
+    flex-wrap: wrap;
+}
+.avatar-option {
+    font-size: 1.8rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.3s;
+}
+.avatar-option.selected {
+    border-color: var(--primary);
+    background: #eef2ff;
+    transform: scale(1.1);
+}
+
+/* ============================================================
+   PANTALLA DE BIENVENIDA
+   ============================================================ */
+.welcome-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 4900;
+    padding: 1rem;
+}
+.welcome-overlay.active {
+    display: flex;
+    animation: fadeInUp 0.5s;
+}
+.welcome-card {
+    background: white;
+    border-radius: 25px;
+    padding: 3rem 2.5rem;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: bounceIn 0.7s;
+}
+.welcome-card .wave {
+    font-size: 4rem;
+    animation: wave 1s infinite;
+    display: inline-block;
+}
+.welcome-card h1 {
+    font-size: 1.8rem;
+    color: var(--primary-dark);
+    margin: 0.5rem 0;
+}
+.welcome-quote {
+    background: #eef2ff;
+    border-radius: 15px;
+    padding: 1.3rem;
+    margin: 1.3rem 0;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--primary-dark);
+}
+.welcome-quote .quote-es {
+    font-size: 0.9rem;
+    color: var(--gray);
+    margin-top: 0.5rem;
+    font-style: normal;
+}
+
+/* ============================================================
+   HEADER Y NAVEGACIÓN
+   ============================================================ */
+header {
+    background: var(--gradient);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+}
+nav a:hover {
+    opacity: 0.8;
+}
+.user-chip {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.user-chip .points {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 0.1rem 0.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+/* ============================================================
+   POMODORO FLOTANTE (FAB)
+   ============================================================ */
+.pomodoro-fab {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1500;
+}
+.pomodoro-toggle {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pomodoro-toggle:hover {
+    transform: scale(1.1);
+}
+.pomodoro-toggle.running {
+    animation: pulse 2s infinite;
+}
+.pomodoro-panel {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 300px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+    padding: 1.5rem;
+    display: none;
+}
+.pomodoro-panel.open {
+    display: block;
+    animation: fadeInUp 0.3s;
+}
+.pomo-timer {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    color: var(--primary-dark);
+    margin: 0.5rem 0;
+    font-variant-numeric: tabular-nums;
+}
+.pomo-phase {
+    text-align: center;
+    font-weight: 600;
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+.phase-work {
+    background: #dcfce7;
+    color: #166534;
+}
+.phase-break {
+    background: #dbeafe;
+    color: #1e40af;
+}
+.pomo-ring {
+    width: 100%;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 50px;
+    overflow: hidden;
+    margin: 0.8rem 0;
+}
+.pomo-ring-fill {
+    height: 100%;
+    background: var(--gradient);
+    width: 100%;
+    transition: width 1s linear;
+}
+.pomo-controls {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 0.8rem;
+}
+.pomo-btn {
+    flex: 1;
+    padding: 0.6rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+.pomo-presets {
+    display: flex;
+    gap: 0.4rem;
+    margin: 0.8rem 0;
+    flex-wrap: wrap;
+}
+.preset-chip {
+    flex: 1;
+    min-width: 75px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 0.5rem 0.3rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.72rem;
+    text-align: center;
+    transition: all 0.3s;
+}
+.preset-chip.active {
+    background: var(--primary);
+    color: white;
+    border-color: transparent;
+}
+.pomo-custom {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+.pomo-custom input {
+    width: 100%;
+    padding: 0.4rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    text-align: center;
+}
+.focus-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+/* Switch (interruptor) */
+.switch {
+    position: relative;
+    width: 46px;
+    height: 24px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    inset: 0;
+    background: #cbd5e1;
+    border-radius: 24px;
+    transition: 0.3s;
+}
+.slider:before {
+    content: '';
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+input:checked + .slider {
+    background: var(--success);
+}
+input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+    background: var(--gradient);
+    color: white;
+    text-align: center;
+    padding: 2.8rem 2rem;
+}
+.hero h1 {
+    font-size: 2.3rem;
+    margin-bottom: 1rem;
+}
+.cefr-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 0.4rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-bottom: 1.3rem;
+}
+.hero p {
+    font-size: 1.1rem;
+    max-width: 750px;
+    margin: 0 auto 1.5rem;
+    opacity: 0.95;
+}
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+.stat-number {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn {
+    background: white;
+    color: var(--primary-dark);
+    border: none;
+    padding: 0.85rem 2rem;
+    font-size: 0.96rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.btn:hover {
+    transform: translateY(-3px);
+}
+.btn-outline {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+    margin-left: 0.6rem;
+}
+.btn-sm {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.85rem;
+}
+
+/* ============================================================
+   SECCIONES Y TÍTULOS
+   ============================================================ */
+.section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+}
+.section-title {
+    text-align: center;
+    font-size: 1.9rem;
+    margin-bottom: 0.6rem;
+}
+.section-subtitle {
+    text-align: center;
+    color: var(--gray);
+    margin-bottom: 2.3rem;
+}
+
+/* ============================================================
+   BARRA DE PROGRESO
+   ============================================================ */
+.progress-container {
+    background: white;
+    padding: 1.4rem 1.8rem;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 1.5rem;
+}
+.progress-bar {
+    background: #e2e8f0;
+    height: 24px;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+.progress-fill {
+    background: var(--gradient);
+    height: 100%;
+    width: 0%;
+    border-radius: 50px;
+    transition: width 1s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.82rem;
+}
+.streak-bar {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+.streak-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #fff7ed;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    color: #c2410c;
+    font-size: 0.9rem;
+}
+
+/* ============================================================
+   TABS (PESTAÑAS)
+   ============================================================ */
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+.tab {
+    background: white;
+    border: 2px solid #e2e8f0;
+    padding: 0.6rem 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.tab.active {
+    background: var(--gradient);
+    color: white;
+    border-color: transparent;
+}
+
+/* ============================================================
+   TARJETAS DE NIVELES
+   ============================================================ */
+.levels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.6rem;
+}
+.level-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.7rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+.level-card:hover {
+    transform: translateY(-8px);
+}
+.level-card.locked {
+    opacity: 0.65;
+}
+.level-badge {
+    display: inline-block;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+}
+/* Badges por nivel MCER */
+.badge-A1,
+.badge-A2 {
+    background: #dcfce7;
+    color: #166534;
+}
+.badge-B1,
+.badge-B2 {
+    background: #fef3c7;
+    color: #92400e;
+}
+.badge-C1,
+.badge-C2 {
+    background: #fce7f3;
+    color: #9d174d;
+}
+.level-icon {
+    font-size: 2.6rem;
+    margin-bottom: 0.7rem;
+}
+.level-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+}
+.level-progress {
+    background: #e2e8f0;
+    height: 8px;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-bottom: 0.9rem;
+}
+.level-progress-fill {
+    background: var(--success);
+    height: 100%;
+    width: 0%;
+    transition: width 0.8s;
+}
+.lock-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.3rem;
+}
+.reward-tag {
+    font-size: 0.78rem;
+    color: var(--warning);
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+/* ============================================================
+   SISTEMA SRS / ANKI
+   ============================================================ */
+.srs-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    max-width: 550px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.srs-img {
+    height: 180px;
+    background: linear-gradient(135deg, #eef2ff, #fce7f3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+}
+.srs-body {
+    padding: 2rem;
+    text-align: center;
+}
+.srs-front {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 1rem;
+}
+.srs-back {
+    display: none;
+}
+.srs-back.show {
+    display: block;
+    animation: fadeInUp 0.3s;
+}
+.srs-translation {
+    font-size: 1.3rem;
+    color: var(--secondary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.srs-context {
+    color: var(--gray);
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+.srs-grades {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+.grade-btn {
+    padding: 0.7rem 0.3rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    color: white;
+    font-size: 0.78rem;
+}
+.grade-again {
+    background: var(--danger);
+}
+.grade-hard {
+    background: var(--warning);
+}
+.grade-good {
+    background: var(--success);
+}
+.grade-easy {
+    background: var(--primary);
+}
+.srs-stats {
+    display: flex;
+    justify-content: space-around;
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+.srs-stat {
+    text-align: center;
+}
+.srs-stat .num {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+.srs-stat small {
+    color: var(--gray);
+    font-size: 0.75rem;
+}
+
+/* ============================================================
+   TARJETAS DE NEUROCIENCIA
+   ============================================================ */
+.neuro-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.neuro-card {
+    background: white;
+    border-radius: 18px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+    border-top: 4px solid var(--primary);
+}
+.neuro-card .nicon {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+.neuro-card h4 {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+}
+.neuro-card p {
+    font-size: 0.88rem;
+    color: var(--gray);
+}
+.neuro-card .source {
+    font-size: 0.75rem;
+    color: var(--primary);
+    margin-top: 0.6rem;
+    font-weight: 600;
+}
+
+/* ============================================================
+   CUESTIONARIO (QUIZ)
+   ============================================================ */
+.quiz-question {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 1rem 0;
+}
+.quiz-options {
+    display: grid;
+    gap: 0.8rem;
+}
+.quiz-option {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    padding: 1rem 1.3rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.quiz-option:hover {
+    border-color: var(--primary);
+    background: #eef2ff;
+}
+.quiz-option.correct {
+    border-color: var(--success);
+    background: #dcfce7;
+}
+.quiz-option.incorrect {
+    border-color: var(--danger);
+    background: #fee2e2;
+}
+.score-circle {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: var(--gradient);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 auto 1.2rem;
+}
+
+/* ============================================================
+   YOUGLISH
+   ============================================================ */
+.yg-section {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    max-width: 900px;
+    margin: 0 auto;
+}
+.yg-search {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+.yg-search input {
+    flex: 1;
+    padding: 0.9rem 1.2rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+}
+#ygWidget,
+#ygShadow {
+    min-height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+.yg-placeholder {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--gray);
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 2px dashed #cbd5e1;
+}
+.yg-info {
+    background: #fef2f2;
+    border-left: 4px solid #ff0000;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.88rem;
+}
+
+/* ============================================================
+   TABLA DE CLASIFICACIÓN (LEADERBOARD)
+   ============================================================ */
+.leaderboard {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    max-width: 700px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.lb-header {
+    background: var(--gradient);
+    color: white;
+    padding: 1.2rem;
+    text-align: center;
+}
+.lb-row {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+.lb-row.me {
+    background: #eef2ff;
+    font-weight: 700;
+}
+.lb-rank {
+    font-size: 1.3rem;
+    font-weight: 800;
+    width: 50px;
+}
+.lb-avatar {
+    font-size: 1.8rem;
+    margin: 0 1rem;
+}
+.lb-name {
+    flex: 1;
+}
+.lb-points {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* ============================================================
+   LOGROS (ACHIEVEMENTS)
+   ============================================================ */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+}
+.achievement {
+    background: white;
+    border-radius: 15px;
+    padding: 1.2rem 0.8rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+.achievement.unlocked {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+}
+.achievement .ach-icon {
+    font-size: 2.3rem;
+    filter: grayscale(100%);
+    opacity: 0.4;
+}
+.achievement.unlocked .ach-icon {
+    filter: none;
+    opacity: 1;
+}
+.achievement h4 {
+    font-size: 0.85rem;
+    margin: 0.4rem 0 0.2rem;
+}
+.achievement small {
+    color: var(--gray);
+    font-size: 0.72rem;
+}
+
+/* ============================================================
+   MODALES
+   ============================================================ */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+.modal.active {
+    display: flex;
+}
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    max-width: 700px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
+    animation: fadeInUp 0.4s;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.3rem;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 1rem;
+}
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--gray);
+}
+
+/* ============================================================
+   POPUP DE RECOMPENSAS / INCENTIVOS
+   ============================================================ */
+.reward-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 6000;
+    justify-content: center;
+    align-items: center;
+}
+.reward-popup.active {
+    display: flex;
+}
+.reward-card {
+    background: white;
+    border-radius: 25px;
+    padding: 2.5rem;
+    text-align: center;
+    max-width: 420px;
+    animation: bounceIn 0.6s;
+}
+.reward-card .big-icon {
+    font-size: 4.5rem;
+    animation: spin 1s;
+}
+.reward-card h2 {
+    font-size: 1.6rem;
+    color: var(--primary-dark);
+}
+.points-earned {
+    background: var(--gradient-gold);
+    color: white;
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    margin: 1rem 0;
+}
+
+/* ============================================================
+   CONFETTI (ANIMACIÓN DE CELEBRACIÓN)
+   ============================================================ */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    z-index: 7000;
+    pointer-events: none;
+    animation: fall 3s linear forwards;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    margin-top: 2rem;
+}
+
+/* ============================================================
+   ANIMACIONES (KEYFRAMES)
+   ============================================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.6);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(99, 102, 241, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+    }
+}
+@keyframes wave {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    25% {
+        transform: rotate(20deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+}
+@keyframes fall {
+    to {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* ============================================================
+   UTILIDADES
+   ============================================================ */
+.hidden-section {
+    display: none;
+}
+
+/* ============================================================
+   DISEÑO RESPONSIVO (MÓVILES)
+   ============================================================ */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    nav ul {
+        gap: 0.5rem;
+        font-size: 0.78rem;
+    }
+    .btn-outline {
+        margin-left: 0;
+        margin-top: 0.6rem;
+    }
+    .srs-grades {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
